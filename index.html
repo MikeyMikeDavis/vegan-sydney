@@ -5,106 +5,205 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Veg & Vegan Sydney 2026</title>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;900&display=swap');
+
         :root {
-            --primary: #2e7d32;
-            --secondary: #81c784;
-            --background: #f1f8e9;
-            --card-bg: #ffffff;
-            --text-main: #333333;
-            --text-muted: #666666;
+            --neon-pink: #ff61a6;
+            --neon-blue: #00f0ff;
+            --dark-bg: #1a0b2e;
+            --glass-bg: rgba(25, 15, 45, 0.6);
+            --glass-border: rgba(0, 240, 255, 0.3);
+            --text-light: #fdfdfd;
         }
+
         body {
-            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-            background-color: var(--background);
-            color: var(--text-main);
+            font-family: 'Nunito', sans-serif;
+            color: var(--text-light);
             margin: 0;
             padding: 0;
             line-height: 1.6;
+            min-height: 100vh;
+            overflow-x: hidden;
         }
+
+        /* Anime Retro Graphic Background */
+        .anime-bg {
+            position: fixed;
+            top: 0; left: 0; width: 100vw; height: 100vh;
+            z-index: -1;
+            background: linear-gradient(to bottom, #0f0c29, #302b63, #240b36);
+            overflow: hidden;
+        }
+
+        .anime-sun {
+            position: absolute;
+            top: 20%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 400px; height: 400px;
+            background: linear-gradient(to bottom, #ffde00, #ff0055);
+            border-radius: 50%;
+            box-shadow: 0 0 80px #ff0055;
+            -webkit-mask-image: linear-gradient(to bottom, 
+                black 55%, transparent 55%, transparent 58%, 
+                black 58%, black 68%, transparent 68%, transparent 72%, 
+                black 72%, black 82%, transparent 82%, transparent 87%, 
+                black 87%, black 95%, transparent 95%);
+        }
+
+        .anime-grid {
+            position: absolute;
+            bottom: 0; left: -50%; width: 200%; height: 40%;
+            background-image: 
+                linear-gradient(var(--neon-pink) 2px, transparent 2px),
+                linear-gradient(90deg, var(--neon-blue) 2px, transparent 2px);
+            background-size: 50px 50px;
+            transform: perspective(600px) rotateX(75deg);
+            transform-origin: top;
+            box-shadow: inset 0 50px 50px #240b36;
+        }
+
         header {
-            background-color: var(--primary);
-            color: white;
             text-align: center;
-            padding: 3rem 1rem;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            padding: 4rem 1rem 2rem;
+            position: relative;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
         }
+
         header h1 {
             margin: 0;
-            font-size: 2.8rem;
+            font-size: 3.5rem;
+            font-weight: 900;
+            letter-spacing: 2px;
+            color: #fff;
+            text-transform: uppercase;
+            -webkit-text-stroke: 1px var(--neon-pink);
+            text-shadow: 0 0 15px var(--neon-pink), 0 0 30px var(--neon-pink);
+        }
+
+        header p {
+            font-size: 1.3rem;
+            color: var(--neon-blue);
+            font-weight: 700;
             letter-spacing: 1px;
         }
-        header p {
-            margin-top: 0.5rem;
-            font-size: 1.2rem;
-            opacity: 0.9;
-        }
+
         .container {
             max-width: 1200px;
-            margin: 3rem auto;
+            margin: 2rem auto 5rem;
             padding: 0 1.5rem;
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
             gap: 2rem;
+            position: relative;
         }
+
+        /* Glassmorphism Cards */
         .card {
-            background-color: var(--card-bg);
-            border-radius: 12px;
+            background-color: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid var(--glass-border);
+            border-radius: 16px;
             padding: 1.5rem;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.05);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            border-top: 5px solid var(--secondary);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5);
+            transition: transform 0.3s ease, border-color 0.3s ease;
         }
+
         .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+            transform: translateY(-5px) scale(1.02);
+            border-color: var(--neon-pink);
+            box-shadow: 0 8px 32px 0 rgba(255, 97, 166, 0.3);
         }
+
         .card h2 {
             margin-top: 0;
-            color: var(--primary);
-            font-size: 1.4rem;
-            border-bottom: 1px solid #eee;
-            padding-bottom: 0.75rem;
+            color: var(--neon-blue);
+            font-size: 1.6rem;
+            border-bottom: 2px dashed rgba(0, 240, 255, 0.3);
+            padding-bottom: 0.5rem;
             margin-bottom: 1rem;
+            text-shadow: 0 0 5px rgba(0, 240, 255, 0.5);
         }
+
         .card p {
             margin: 0.5rem 0;
-            font-size: 1rem;
+            font-size: 1.05rem;
         }
+
         .label {
-            font-weight: 600;
-            color: var(--text-muted);
+            font-weight: 700;
+            color: var(--neon-pink);
             display: inline-block;
             width: 85px;
         }
-        .ig-badge {
-            display: inline-block;
-            margin-top: 1rem;
-            padding: 0.5rem 1rem;
-            background-color: #fce4ec;
-            color: #d81b60;
+
+        /* Distinct Link Buttons */
+        .link-container {
+            margin-top: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+        }
+
+        .btn {
+            display: block;
+            text-align: center;
+            padding: 0.6rem 1rem;
             text-decoration: none;
-            border-radius: 20px;
-            font-size: 0.9rem;
-            font-weight: bold;
-            transition: background-color 0.2s ease;
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: 0.95rem;
+            transition: all 0.2s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
-        .ig-badge:hover {
-            background-color: #f8bbd0;
+
+        .btn-website {
+            background-color: transparent;
+            color: var(--neon-blue);
+            border: 2px solid var(--neon-blue);
         }
+
+        .btn-website:hover {
+            background-color: var(--neon-blue);
+            color: var(--dark-bg);
+            box-shadow: 0 0 15px var(--neon-blue);
+        }
+
+        .btn-ig {
+            background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+            color: white;
+            border: none;
+        }
+
+        .btn-ig:hover {
+            opacity: 0.9;
+            box-shadow: 0 0 15px #dc2743;
+            transform: scale(1.02);
+        }
+
         footer {
             text-align: center;
             padding: 2rem;
-            background-color: var(--primary);
-            color: white;
-            margin-top: 3rem;
+            background-color: rgba(0,0,0,0.5);
+            backdrop-filter: blur(5px);
+            color: rgba(255,255,255,0.7);
+            border-top: 1px solid var(--neon-blue);
+            position: relative;
         }
     </style>
 </head>
 <body>
 
+<div class="anime-bg">
+    <div class="anime-sun"></div>
+    <div class="anime-grid"></div>
+</div>
+
 <header>
-    <h1>Veg & Vegan Sydney 2026</h1>
-    <p>Your ultimate directory for plant-based dining across the city.</p>
+    <h1>Veg Sydney</h1>
+    <p>2026 Plant-Based Directory</p>
 </header>
 
 <div class="container">
@@ -113,118 +212,166 @@
         <h2>Don Fred</h2>
         <p><span class="label">Cuisine:</span> Italian</p>
         <p><span class="label">Location:</span> Newtown</p>
-        <a href="#" class="ig-badge">@Don Fred</a>
+        <div class="link-container">
+            <a href="#" class="btn btn-website">🌐 Website: Don Fred</a>
+            <a href="#" class="btn btn-ig">📷 Instagram: @Don Fred</a>
+        </div>
     </div>
 
     <div class="card">
         <h2>Comeco Foods</h2>
-        <p><span class="label">Cuisine:</span> Vegan Sushi/Japanese</p>
+        <p><span class="label">Cuisine:</span> Vegan Sushi</p>
         <p><span class="label">Location:</span> Newtown</p>
-        <a href="#" class="ig-badge">@Comeco Foods</a>
+        <div class="link-container">
+            <a href="#" class="btn btn-website">🌐 Website: Comeco Foods</a>
+            <a href="#" class="btn btn-ig">📷 Instagram: @Comeco Foods</a>
+        </div>
     </div>
 
     <div class="card">
-        <h2>Flyover Fritterie And Chai Bar</h2>
-        <p><span class="label">Cuisine:</span> Veg/Vegan Indian</p>
+        <h2>Flyover Fritterie</h2>
+        <p><span class="label">Cuisine:</span> Indian</p>
         <p><span class="label">Location:</span> Redfern</p>
-        <a href="#" class="ig-badge">@Flyover Fritterie And Chai Bar</a>
+        <div class="link-container">
+            <a href="#" class="btn btn-website">🌐 Website: Flyover Fritterie</a>
+            <a href="#" class="btn btn-ig">📷 Instagram: @Flyover Fritterie And Chai Bar</a>
+        </div>
     </div>
 
     <div class="card">
         <h2>Gigi’s Pizza</h2>
         <p><span class="label">Cuisine:</span> Pizza</p>
         <p><span class="label">Location:</span> Newtown</p>
-        <a href="#" class="ig-badge">@Gigi’s Pizza</a>
+        <div class="link-container">
+            <a href="#" class="btn btn-website">🌐 Website: Gigi’s Pizza</a>
+            <a href="#" class="btn btn-ig">📷 Instagram: @Gigi’s Pizza</a>
+        </div>
     </div>
 
     <div class="card">
-        <h2>Golden Lotus Vietnamese</h2>
+        <h2>Golden Lotus</h2>
         <p><span class="label">Cuisine:</span> Vietnamese</p>
         <p><span class="label">Location:</span> Newtown</p>
-        <a href="#" class="ig-badge">@Golden Lotus Vietnamese</a>
+        <div class="link-container">
+            <a href="#" class="btn btn-website">🌐 Website: Golden Lotus</a>
+            <a href="#" class="btn btn-ig">📷 Instagram: @Golden Lotus Vietnamese</a>
+        </div>
     </div>
 
     <div class="card">
         <h2>Le Gourmand</h2>
         <p><span class="label">Cuisine:</span> Bakery</p>
         <p><span class="label">Location:</span> Newtown</p>
-        <a href="#" class="ig-badge">@Le Gourmand</a>
+        <div class="link-container">
+            <a href="#" class="btn btn-website">🌐 Website: Le Gourmand</a>
+            <a href="#" class="btn btn-ig">📷 Instagram: @Le Gourmand</a>
+        </div>
     </div>
 
     <div class="card">
-        <h2>Mama B’s Vegan Bistro</h2>
-        <p><span class="label">Cuisine:</span> Pub food classics</p>
+        <h2>Mama B’s</h2>
+        <p><span class="label">Cuisine:</span> Pub Classics</p>
         <p><span class="label">Location:</span> Chippendale</p>
-        <a href="#" class="ig-badge">@Mama B’s Vegan Bistro</a>
+        <div class="link-container">
+            <a href="#" class="btn btn-website">🌐 Website: Mama B’s</a>
+            <a href="#" class="btn btn-ig">📷 Instagram: @Mama B’s Vegan Bistro</a>
+        </div>
     </div>
 
     <div class="card">
         <h2>Mr Charlie’s</h2>
-        <p><span class="label">Cuisine:</span> Vegan Fast Food Burgers</p>
+        <p><span class="label">Cuisine:</span> Fast Food Burgers</p>
         <p><span class="label">Location:</span> Redfern</p>
-        <a href="#" class="ig-badge">@Mr Charlie’s</a>
+        <div class="link-container">
+            <a href="#" class="btn btn-website">🌐 Website: Mr Charlie’s</a>
+            <a href="#" class="btn btn-ig">📷 Instagram: @Mr Charlie’s</a>
+        </div>
     </div>
 
     <div class="card">
         <h2>Oh My Days</h2>
         <p><span class="label">Cuisine:</span> Vegan Bakery</p>
         <p><span class="label">Location:</span> Glebe</p>
-        <a href="#" class="ig-badge">@Oh My Days</a>
+        <div class="link-container">
+            <a href="#" class="btn btn-website">🌐 Website: Oh My Days</a>
+            <a href="#" class="btn btn-ig">📷 Instagram: @Oh My Days</a>
+        </div>
     </div>
 
     <div class="card">
         <h2>Shift Eatery</h2>
         <p><span class="label">Cuisine:</span> Vegan Deli</p>
         <p><span class="label">Location:</span> Surry Hills</p>
-        <a href="#" class="ig-badge">@Shift Eatery</a>
+        <div class="link-container">
+            <a href="#" class="btn btn-website">🌐 Website: Shift Eatery</a>
+            <a href="#" class="btn btn-ig">📷 Instagram: @Shift Eatery</a>
+        </div>
     </div>
 
     <div class="card">
-        <h2>The Little Turtle Restaurant</h2>
+        <h2>The Little Turtle</h2>
         <p><span class="label">Cuisine:</span> Thai</p>
         <p><span class="label">Location:</span> Enmore</p>
-        <a href="#" class="ig-badge">@The Little Turtle Restaurant</a>
+        <div class="link-container">
+            <a href="#" class="btn btn-website">🌐 Website: The Little Turtle</a>
+            <a href="#" class="btn btn-ig">📷 Instagram: @The Little Turtle Restaurant</a>
+        </div>
     </div>
 
     <div class="card">
         <h2>Towzen</h2>
         <p><span class="label">Cuisine:</span> Japanese (Ramen)</p>
         <p><span class="label">Location:</span> City</p>
-        <a href="#" class="ig-badge">@Towzen</a>
+        <div class="link-container">
+            <a href="#" class="btn btn-website">🌐 Website: Towzen</a>
+            <a href="#" class="btn btn-ig">📷 Instagram: @Towzen</a>
+        </div>
     </div>
 
     <div class="card">
         <h2>Vandal</h2>
         <p><span class="label">Cuisine:</span> Mexican</p>
         <p><span class="label">Location:</span> Newtown</p>
-        <a href="#" class="ig-badge">@Vandal</a>
+        <div class="link-container">
+            <a href="#" class="btn btn-website">🌐 Website: Vandal</a>
+            <a href="#" class="btn btn-ig">📷 Instagram: @Vandal</a>
+        </div>
     </div>
 
     <div class="card">
         <h2>Yullis</h2>
         <p><span class="label">Cuisine:</span> Modern Australian</p>
         <p><span class="label">Location:</span> Surry Hills</p>
-        <a href="#" class="ig-badge">@Yullis</a>
+        <div class="link-container">
+            <a href="#" class="btn btn-website">🌐 Website: Yullis</a>
+            <a href="#" class="btn btn-ig">📷 Instagram: @Yullis</a>
+        </div>
     </div>
 
     <div class="card">
         <h2>Yullis Brews</h2>
         <p><span class="label">Cuisine:</span> Brewery</p>
         <p><span class="label">Location:</span> Alexandria</p>
-        <a href="#" class="ig-badge">@Vegan Brewery - Yullis Brews</a>
+        <div class="link-container">
+            <a href="#" class="btn btn-website">🌐 Website: Yullis Brews</a>
+            <a href="#" class="btn btn-ig">📷 Instagram: @Vegan Brewery - Yullis Brews</a>
+        </div>
     </div>
 
     <div class="card">
         <h2>Yellow</h2>
         <p><span class="label">Cuisine:</span> Modern Australian</p>
         <p><span class="label">Location:</span> Potts Point</p>
-        <a href="#" class="ig-badge">@Vegan - Yellow</a>
+        <div class="link-container">
+            <a href="#" class="btn btn-website">🌐 Website: Yellow</a>
+            <a href="#" class="btn btn-ig">📷 Instagram: @Vegan - Yellow</a>
+        </div>
     </div>
 
 </div>
 
 <footer>
-    <p>&copy; 2026 Veg & Vegan Sydney Directory. All rights reserved.</p>
+    <p>&copy; 2026 Veg & Vegan Sydney Directory. Keep it green! 🌱</p>
 </footer>
 
 </body>
