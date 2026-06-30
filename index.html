@@ -4,6 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Veg & Vegan Sydney 2026</title>
+    
+    <!-- Leaflet Map CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;900&display=swap');
 
@@ -88,9 +92,38 @@
             letter-spacing: 1px;
         }
 
+        .map-wrapper {
+            max-width: 1200px;
+            margin: 0 auto 2rem;
+            padding: 0 1.5rem;
+            position: relative;
+        }
+
+        #map {
+            height: 400px;
+            width: 100%;
+            border-radius: 16px;
+            border: 1px solid var(--glass-border);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5);
+            /* This filter turns the standard map into a dark synthwave map! */
+            filter: invert(90%) hue-rotate(200deg) brightness(90%) contrast(110%);
+        }
+
+        /* Fix popup text color inside the dark map */
+        .leaflet-popup-content-wrapper {
+            background: var(--dark-bg);
+            color: var(--neon-blue);
+            border: 1px solid var(--neon-pink);
+            border-radius: 8px;
+        }
+        .leaflet-popup-tip {
+            background: var(--dark-bg);
+            border: 1px solid var(--neon-pink);
+        }
+
         .container {
             max-width: 1200px;
-            margin: 2rem auto 5rem;
+            margin: 0 auto 5rem;
             padding: 0 1.5rem;
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
@@ -205,6 +238,11 @@
     <h1>Veg Sydney</h1>
     <p>2026 Plant-Based Directory</p>
 </header>
+
+<!-- Map Container -->
+<div class="map-wrapper">
+    <div id="map"></div>
+</div>
 
 <div class="container">
     
@@ -322,8 +360,8 @@
         <p><span class="label">Cuisine:</span> Japanese (Ramen)</p>
         <p><span class="label">Location:</span> City</p>
         <div class="link-container">
-            <a href="https://towzen.com.au/" target="_blank" class="btn btn-website">🌐 Website: Towzen</a>
-            <a href="https://www.instagram.com/towzensydney" target="_blank" class="btn btn-ig">📷 Instagram: @towzensydney</a>
+            <a href="https://towzenramen.com/" target="_blank" class="btn btn-website">🌐 Website: Towzen</a>
+            <a href="https://www.instagram.com/towzen.au/" target="_blank" class="btn btn-ig">📷 Instagram: @towzensydney</a>
         </div>
     </div>
 
@@ -332,8 +370,8 @@
         <p><span class="label">Cuisine:</span> Mexican</p>
         <p><span class="label">Location:</span> Newtown</p>
         <div class="link-container">
-            <a href="https://vandalsydney.com.au/" target="_blank" class="btn btn-website">🌐 Website: Vandal</a>
-            <a href="https://www.instagram.com/vandalsydney" target="_blank" class="btn btn-ig">📷 Instagram: @vandalsydney</a>
+            <a href="https://www.vandalsydney.com.au/" target="_blank" class="btn btn-website">🌐 Website: Vandal</a>
+            <a href="https://www.instagram.com/vandal_sydney/?hl=en" target="_blank" class="btn btn-ig">📷 Instagram: @vandalsydney</a>
         </div>
     </div>
 
@@ -342,8 +380,8 @@
         <p><span class="label">Cuisine:</span> Modern Australian</p>
         <p><span class="label">Location:</span> Surry Hills</p>
         <div class="link-container">
-            <a href="https://www.yullis.com.au/" target="_blank" class="btn btn-website">🌐 Website: Yullis</a>
-            <a href="https://www.instagram.com/yullis_surryhills" target="_blank" class="btn btn-ig">📷 Instagram: @yullis_surryhills</a>
+            <a href="https://yullis.com.au/" target="_blank" class="btn btn-website">🌐 Website: Yullis</a>
+            <a href="https://www.instagram.com/yullissurryhills/?hl=en" target="_blank" class="btn btn-ig">📷 Instagram: @yullis_surryhills</a>
         </div>
     </div>
 
@@ -353,7 +391,7 @@
         <p><span class="label">Location:</span> Alexandria</p>
         <div class="link-container">
             <a href="https://www.yullisbrews.com.au/" target="_blank" class="btn btn-website">🌐 Website: Yullis Brews</a>
-            <a href="https://www.instagram.com/yullisbrews" target="_blank" class="btn btn-ig">📷 Instagram: @yullisbrews</a>
+            <a href="https://www.instagram.com/yullisbrews/?hl=en" target="_blank" class="btn btn-ig">📷 Instagram: @yullisbrews</a>
         </div>
     </div>
 
@@ -362,8 +400,8 @@
         <p><span class="label">Cuisine:</span> Modern Australian</p>
         <p><span class="label">Location:</span> Potts Point</p>
         <div class="link-container">
-            <a href="https://www.yellowsydney.com.au/" target="_blank" class="btn btn-website">🌐 Website: Yellow</a>
-            <a href="https://www.instagram.com/yellowsydney" target="_blank" class="btn btn-ig">📷 Instagram: @yellowsydney</a>
+            <a href="https://www.bentleyrestaurantgroup.com.au/yellow" target="_blank" class="btn btn-website">🌐 Website: Yellow</a>
+            <a href="https://www.instagram.com/yellowsydney/?hl=en" target="_blank" class="btn btn-ig">📷 Instagram: @yellowsydney</a>
         </div>
     </div>
 
@@ -372,6 +410,46 @@
 <footer>
     <p>&copy; 2026 Veg & Vegan Sydney Directory. Keep it green! 🌱</p>
 </footer>
+
+<!-- Leaflet Map JS script -->
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script>
+    // Initialize the map and set it to focus on the Sydney area (Newtown/Surry Hills)
+    var map = L.map('map').setView([-33.8900, 151.1900], 13);
+
+    // Load the free OpenStreetMap tiles
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom: 19,
+        attribution: '&copy; OpenStreetMap contributors'
+    }).addTo(map);
+
+    // List of restaurants and their approximate GPS coordinates
+    var restaurants = [
+        ["Don Fred", -33.897, 151.179],
+        ["Comeco Foods", -33.896, 151.178],
+        ["Flyover Fritterie And Chai Bar", -33.892, 151.200],
+        ["Gigi’s Pizza", -33.895, 151.179],
+        ["Golden Lotus Vietnamese", -33.898, 151.177],
+        ["Le Gourmand", -33.899, 151.176],
+        ["Mama B’s Vegan Bistro", -33.885, 151.200],
+        ["Mr Charlie’s", -33.893, 151.201],
+        ["Oh My Days", -33.882, 151.183],
+        ["Shift Eatery", -33.885, 151.210],
+        ["The Little Turtle Restaurant", -33.900, 151.173],
+        ["Towzen", -33.870, 151.208],
+        ["Vandal", -33.896, 151.178],
+        ["Yullis", -33.886, 151.214],
+        ["Yullis Brews", -33.910, 151.195],
+        ["Yellow", -33.870, 151.225]
+    ];
+
+    // Loop through the data and place a marker on the map for each one
+    restaurants.forEach(function(place) {
+        L.marker([place[1], place[2]])
+         .addTo(map)
+         .bindPopup("<b>" + place[0] + "</b>");
+    });
+</script>
 
 </body>
 </html>
