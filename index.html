@@ -10,9 +10,6 @@
     <meta property="og:description" content="Your ultimate neon-drenched directory for plant-based dining across Sydney.">
     <meta property="og:type" content="website">
     <meta name="twitter:card" content="summary_large_image">
-
-    <!-- Leaflet Map CSS -->
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
     
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;900&display=swap');
@@ -76,7 +73,7 @@
 
         header {
             text-align: center;
-            padding: 4rem 1rem 2rem;
+            padding: 4rem 1rem 3rem;
             position: relative;
             text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
         }
@@ -97,48 +94,6 @@
             color: var(--neon-blue);
             font-weight: 700;
             letter-spacing: 1px;
-        }
-
-        .map-wrapper {
-            max-width: 1200px;
-            margin: 0 auto 3rem;
-            padding: 0 1.5rem;
-            position: relative;
-        }
-
-        #map {
-            height: 450px;
-            width: 100%;
-            border-radius: 16px;
-            border: 2px solid var(--neon-pink);
-            box-shadow: 0 0 20px rgba(255, 97, 166, 0.4);
-            filter: invert(90%) hue-rotate(200deg) brightness(90%) contrast(110%);
-        }
-
-        /* Fix popup styles for the synthwave map */
-        .leaflet-popup-content-wrapper {
-            background: var(--dark-bg) !important;
-            color: var(--neon-blue) !important;
-            border: 1px solid var(--neon-pink);
-            border-radius: 8px;
-            text-align: center;
-        }
-        .leaflet-popup-tip {
-            background: var(--dark-bg) !important;
-            border: 1px solid var(--neon-pink);
-        }
-        
-        .custom-leaf-icon {
-            font-size: 28px;
-            text-align: center;
-            line-height: 28px;
-            filter: drop-shadow(0 0 8px #00f0ff) drop-shadow(0 0 15px #00f0ff);
-            animation: pulse 2s infinite alternate;
-        }
-
-        @keyframes pulse {
-            0% { filter: drop-shadow(0 0 5px #00f0ff); transform: scale(1); }
-            100% { filter: drop-shadow(0 0 15px #00f0ff) drop-shadow(0 0 25px #00f0ff); transform: scale(1.1); }
         }
 
         .container {
@@ -275,10 +230,6 @@
     <p>2026 Plant-Based Directory</p>
 </header>
 
-<div class="map-wrapper" id="map-section">
-    <div id="map"></div>
-</div>
-
 <div class="container">
     
     <div class="card">
@@ -286,7 +237,7 @@
         <p><span class="label">Cuisine:</span> Italian</p>
         <p><span class="label">Location:</span> Newtown</p>
         <div class="link-container">
-            <button class="btn btn-map" onclick="focusMap(-33.897, 151.179, 'Don Fred')">📍 View on Map</button>
+            <a href="https://www.google.com/maps/search/?api=1&query=Don+Fred+Newtown" target="_blank" class="btn btn-map">📍 View on Map</a>
             <a href="https://www.donfred.com.au/" target="_blank" class="btn btn-website">🌐 Website: Don Fred</a>
             <a href="https://www.instagram.com/donfred.au/" target="_blank" class="btn btn-ig">📷 Instagram: @donfred</a>
         </div>
@@ -297,7 +248,7 @@
         <p><span class="label">Cuisine:</span> Vegan Sushi</p>
         <p><span class="label">Location:</span> Newtown</p>
         <div class="link-container">
-            <button class="btn btn-map" onclick="focusMap(-33.896, 151.178, 'Comeco Foods')">📍 View on Map</button>
+            <a href="https://www.google.com/maps/search/?api=1&query=Comeco+Foods+Newtown" target="_blank" class="btn btn-map">📍 View on Map</a>
             <a href="https://www.comecofoods.com.au/" target="_blank" class="btn btn-website">🌐 Website: Comeco Foods</a>
             <a href="https://www.instagram.com/comeco_foods/" target="_blank" class="btn btn-ig">📷 Instagram: @comecofoods</a>
         </div>
@@ -308,7 +259,7 @@
         <p><span class="label">Cuisine:</span> Indian</p>
         <p><span class="label">Location:</span> Redfern</p>
         <div class="link-container">
-            <button class="btn btn-map" onclick="focusMap(-33.892, 151.200, 'Flyover Fritterie And Chai Bar')">📍 View on Map</button>
+            <a href="https://www.google.com/maps/search/?api=1&query=Flyover+Fritterie+Redfern" target="_blank" class="btn btn-map">📍 View on Map</a>
             <a href="https://www.flyoverfritterie.com.au/" target="_blank" class="btn btn-website">🌐 Website: Flyover Fritterie</a>
             <a href="https://www.instagram.com/flyover_fritterie/?hl=en" target="_blank" class="btn btn-ig">📷 Instagram: @flyoverfritterie</a>
         </div>
@@ -319,7 +270,7 @@
         <p><span class="label">Cuisine:</span> Pizza</p>
         <p><span class="label">Location:</span> Newtown</p>
         <div class="link-container">
-            <button class="btn btn-map" onclick="focusMap(-33.895, 151.179, 'Gigi’s Pizza')">📍 View on Map</button>
+            <a href="https://www.google.com/maps/search/?api=1&query=Gigi's+Pizza+Newtown" target="_blank" class="btn btn-map">📍 View on Map</a>
             <a href="https://www.gigipizzeria.com.au/" target="_blank" class="btn btn-website">🌐 Website: Gigi’s Pizza</a>
             <a href="https://www.instagram.com/gigipizzeria/?hl=en" target="_blank" class="btn btn-ig">📷 Instagram: @gigispizza</a>
         </div>
@@ -330,7 +281,7 @@
         <p><span class="label">Cuisine:</span> Vietnamese</p>
         <p><span class="label">Location:</span> Newtown</p>
         <div class="link-container">
-            <button class="btn btn-map" onclick="focusMap(-33.898, 151.177, 'Golden Lotus Vietnamese')">📍 View on Map</button>
+            <a href="https://www.google.com/maps/search/?api=1&query=Golden+Lotus+Newtown" target="_blank" class="btn btn-map">📍 View on Map</a>
             <a href="https://www.goldenlotus-vegan.com/" target="_blank" class="btn btn-website">🌐 Website: Golden Lotus</a>
             <a href="https://www.instagram.com/goldenlotusvegan/?hl=en" target="_blank" class="btn btn-ig">📷 Instagram: @goldenlotusvegan</a>
         </div>
@@ -341,7 +292,7 @@
         <p><span class="label">Cuisine:</span> Bakery</p>
         <p><span class="label">Location:</span> Newtown</p>
         <div class="link-container">
-            <button class="btn btn-map" onclick="focusMap(-33.899, 151.176, 'Le Gourmand')">📍 View on Map</button>
+            <a href="https://www.google.com/maps/search/?api=1&query=Le+Gourmand+Newtown" target="_blank" class="btn btn-map">📍 View on Map</a>
             <a href="https://www.legourmand.com.au/about-us" target="_blank" class="btn btn-website">🌐 Website: Le Gourmand</a>
             <a href="https://www.instagram.com/legourmandfoods" target="_blank" class="btn btn-ig">📷 Instagram: @legourmandfoods</a>
         </div>
@@ -352,7 +303,7 @@
         <p><span class="label">Cuisine:</span> Pub Classics</p>
         <p><span class="label">Location:</span> Chippendale</p>
         <div class="link-container">
-            <button class="btn btn-map" onclick="focusMap(-33.885, 151.200, 'Mama B’s Vegan Bistro')">📍 View on Map</button>
+            <a href="https://www.google.com/maps/search/?api=1&query=Mama+B's+Chippendale" target="_blank" class="btn btn-map">📍 View on Map</a>
             <a href="https://www.instagram.com/mamabsveganpubbistro/?hl=en" target="_blank" class="btn btn-ig">📷 Instagram: @mamabsveganpubbistro</a>
         </div>
     </div>
@@ -362,7 +313,7 @@
         <p><span class="label">Cuisine:</span> Fast Food Burgers</p>
         <p><span class="label">Location:</span> Redfern</p>
         <div class="link-container">
-            <button class="btn btn-map" onclick="focusMap(-33.893, 151.201, 'Mr Charlie’s')">📍 View on Map</button>
+            <a href="https://www.google.com/maps/search/?api=1&query=Mr+Charlie's+Redfern" target="_blank" class="btn btn-map">📍 View on Map</a>
             <a href="https://www.timeout.com/sydney/restaurants/mr-charlies" target="_blank" class="btn btn-website">🌐 Website: Mr Charlie’s</a>
             <a href="https://www.instagram.com/explore/locations/126177830587927/mr-charlies-au/" target="_blank" class="btn btn-ig">📷 Instagram: @mrcharlies</a>
         </div>
@@ -373,7 +324,7 @@
         <p><span class="label">Cuisine:</span> Vegan Bakery</p>
         <p><span class="label">Location:</span> Glebe</p>
         <div class="link-container">
-            <button class="btn btn-map" onclick="focusMap(-33.882, 151.183, 'Oh My Days')">📍 View on Map</button>
+            <a href="https://www.google.com/maps/search/?api=1&query=Oh+My+Days+Glebe" target="_blank" class="btn btn-map">📍 View on Map</a>
             <a href="https://www.ohmydays.com.au/" target="_blank" class="btn btn-website">🌐 Website: Oh My Days</a>
             <a href="https://www.instagram.com/ohmydaysglebe/?hl=en" target="_blank" class="btn btn-ig">📷 Instagram: @ohmydaysglebe</a>
         </div>
@@ -384,7 +335,7 @@
         <p><span class="label">Cuisine:</span> Vegan Deli</p>
         <p><span class="label">Location:</span> Surry Hills</p>
         <div class="link-container">
-            <button class="btn btn-map" onclick="focusMap(-33.885, 151.210, 'Shift Eatery')">📍 View on Map</button>
+            <a href="https://www.google.com/maps/search/?api=1&query=Shift+Eatery+Surry+Hills" target="_blank" class="btn btn-map">📍 View on Map</a>
             <a href="https://www.shifteatery.com.au/" target="_blank" class="btn btn-website">🌐 Website: Shift Eatery</a>
             <a href="https://www.instagram.com/shifteatery/?hl=en" target="_blank" class="btn btn-ig">📷 Instagram: @shifteatery</a>
         </div>
@@ -395,7 +346,7 @@
         <p><span class="label">Cuisine:</span> Thai</p>
         <p><span class="label">Location:</span> Enmore</p>
         <div class="link-container">
-            <button class="btn btn-map" onclick="focusMap(-33.900, 151.173, 'The Little Turtle Restaurant')">📍 View on Map</button>
+            <a href="https://www.google.com/maps/search/?api=1&query=The+Little+Turtle+Enmore" target="_blank" class="btn btn-map">📍 View on Map</a>
             <a href="https://littleturtlerestaurant.com/" target="_blank" class="btn btn-website">🌐 Website: The Little Turtle</a>
             <a href="https://www.instagram.com/littleturtlerestaurant/?hl=en" target="_blank" class="btn btn-ig">📷 Instagram: @littleturtlerestaurant</a>
         </div>
@@ -406,7 +357,7 @@
         <p><span class="label">Cuisine:</span> Japanese (Ramen)</p>
         <p><span class="label">Location:</span> City</p>
         <div class="link-container">
-            <button class="btn btn-map" onclick="focusMap(-33.870, 151.208, 'Towzen')">📍 View on Map</button>
+            <a href="https://www.google.com/maps/search/?api=1&query=Towzen+Sydney" target="_blank" class="btn btn-map">📍 View on Map</a>
             <a href="https://towzenramen.com/" target="_blank" class="btn btn-website">🌐 Website: Towzen</a>
             <a href="https://www.instagram.com/towzen.au/" target="_blank" class="btn btn-ig">📷 Instagram: @towzensydney</a>
         </div>
@@ -417,7 +368,7 @@
         <p><span class="label">Cuisine:</span> Mexican</p>
         <p><span class="label">Location:</span> Newtown</p>
         <div class="link-container">
-            <button class="btn btn-map" onclick="focusMap(-33.896, 151.178, 'Vandal')">📍 View on Map</button>
+            <a href="https://www.google.com/maps/search/?api=1&query=Vandal+Newtown" target="_blank" class="btn btn-map">📍 View on Map</a>
             <a href="https://www.vandalsydney.com.au/" target="_blank" class="btn btn-website">🌐 Website: Vandal</a>
             <a href="https://www.instagram.com/vandal_sydney/?hl=en" target="_blank" class="btn btn-ig">📷 Instagram: @vandalsydney</a>
         </div>
@@ -428,7 +379,7 @@
         <p><span class="label">Cuisine:</span> Modern Australian</p>
         <p><span class="label">Location:</span> Surry Hills</p>
         <div class="link-container">
-            <button class="btn btn-map" onclick="focusMap(-33.886, 151.214, 'Yullis')">📍 View on Map</button>
+            <a href="https://www.google.com/maps/search/?api=1&query=Yullis+Surry+Hills" target="_blank" class="btn btn-map">📍 View on Map</a>
             <a href="https://yullis.com.au/" target="_blank" class="btn btn-website">🌐 Website: Yullis</a>
             <a href="https://www.instagram.com/yullissurryhills/?hl=en" target="_blank" class="btn btn-ig">📷 Instagram: @yullis_surryhills</a>
         </div>
@@ -439,7 +390,7 @@
         <p><span class="label">Cuisine:</span> Brewery</p>
         <p><span class="label">Location:</span> Alexandria</p>
         <div class="link-container">
-            <button class="btn btn-map" onclick="focusMap(-33.910, 151.195, 'Yullis Brews')">📍 View on Map</button>
+            <a href="https://www.google.com/maps/search/?api=1&query=Yullis+Brews+Alexandria" target="_blank" class="btn btn-map">📍 View on Map</a>
             <a href="https://www.yullisbrews.com.au/" target="_blank" class="btn btn-website">🌐 Website: Yullis Brews</a>
             <a href="https://www.instagram.com/yullisbrews/?hl=en" target="_blank" class="btn btn-ig">📷 Instagram: @yullisbrews</a>
         </div>
@@ -450,7 +401,7 @@
         <p><span class="label">Cuisine:</span> Modern Australian</p>
         <p><span class="label">Location:</span> Potts Point</p>
         <div class="link-container">
-            <button class="btn btn-map" onclick="focusMap(-33.870, 151.225, 'Yellow')">📍 View on Map</button>
+            <a href="https://www.google.com/maps/search/?api=1&query=Yellow+Potts+Point" target="_blank" class="btn btn-map">📍 View on Map</a>
             <a href="https://www.bentleyrestaurantgroup.com.au/yellow" target="_blank" class="btn btn-website">🌐 Website: Yellow</a>
             <a href="https://www.instagram.com/yellowsydney/?hl=en" target="_blank" class="btn btn-ig">📷 Instagram: @yellowsydney</a>
         </div>
@@ -461,69 +412,6 @@
 <footer>
     <p>&copy; 2026 Veg & Vegan Sydney Directory. Keep it green! 🌱</p>
 </footer>
-
-<!-- Leaflet Map JS script -->
-<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-<script>
-    var map = L.map('map').setView([-33.8900, 151.1900], 13);
-
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        maxZoom: 19,
-        attribution: '&copy; OpenStreetMap contributors'
-    }).addTo(map);
-
-    // Create the custom glowing neon leaf icon
-    var neonLeafIcon = L.divIcon({
-        className: 'custom-div-icon',
-        html: "<div class='custom-leaf-icon'>🌱</div>",
-        iconSize: [30, 42],
-        iconAnchor: [15, 21],
-        popupAnchor: [0, -20]
-    });
-
-    var restaurants = [
-        ["Don Fred", -33.897, 151.179],
-        ["Comeco Foods", -33.896, 151.178],
-        ["Flyover Fritterie And Chai Bar", -33.892, 151.200],
-        ["Gigi’s Pizza", -33.895, 151.179],
-        ["Golden Lotus Vietnamese", -33.898, 151.177],
-        ["Le Gourmand", -33.899, 151.176],
-        ["Mama B’s Vegan Bistro", -33.885, 151.200],
-        ["Mr Charlie’s", -33.893, 151.201],
-        ["Oh My Days", -33.882, 151.183],
-        ["Shift Eatery", -33.885, 151.210],
-        ["The Little Turtle Restaurant", -33.900, 151.173],
-        ["Towzen", -33.870, 151.208],
-        ["Vandal", -33.896, 151.178],
-        ["Yullis", -33.886, 151.214],
-        ["Yullis Brews", -33.910, 151.195],
-        ["Yellow", -33.870, 151.225]
-    ];
-
-    // Store marker references by name to open popups dynamically
-    var markers = {};
-
-    restaurants.forEach(function(place) {
-        var m = L.marker([place[1], place[2]], {icon: neonLeafIcon})
-                 .addTo(map)
-                 .bindPopup("<b>" + place[0] + "</b>");
-        markers[place[0]] = m;
-    });
-
-    // Function to pan to marker and open popup when card button is clicked
-    function focusMap(lat, lng, name) {
-        // Scroll map into view
-        document.getElementById('map-section').scrollIntoView({ behavior: 'smooth', block: 'center' });
-        
-        // Fly to location and open popup
-        map.flyTo([lat, lng], 16, { duration: 1.5 });
-        setTimeout(() => {
-            if (markers[name]) {
-                markers[name].openPopup();
-            }
-        }, 1500); // Waits for flyTo animation to complete
-    }
-</script>
 
 </body>
 </html>
