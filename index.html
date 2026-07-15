@@ -5,6 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Veg & Vegan Sydney 2026</title>
     
+    <!-- OpenGraph Tags for Social Sharing -->
+    <meta property="og:title" content="Veg & Vegan Sydney 2026">
+    <meta property="og:description" content="Your ultimate neon-drenched directory for plant-based dining across Sydney.">
+    <meta property="og:image" content="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=1200">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+
     <!-- Leaflet Map CSS -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
     
@@ -15,7 +22,7 @@
             --neon-pink: #ff61a6;
             --neon-blue: #00f0ff;
             --dark-bg: #1a0b2e;
-            --glass-bg: rgba(25, 15, 45, 0.6);
+            --glass-bg: rgba(25, 15, 45, 0.7);
             --glass-border: rgba(0, 240, 255, 0.3);
             --text-light: #fdfdfd;
         }
@@ -28,6 +35,7 @@
             line-height: 1.6;
             min-height: 100vh;
             overflow-x: hidden;
+            scroll-behavior: smooth;
         }
 
         /* Anime Retro Graphic Background */
@@ -94,31 +102,44 @@
 
         .map-wrapper {
             max-width: 1200px;
-            margin: 0 auto 2rem;
+            margin: 0 auto 3rem;
             padding: 0 1.5rem;
             position: relative;
         }
 
         #map {
-            height: 400px;
+            height: 450px;
             width: 100%;
             border-radius: 16px;
-            border: 1px solid var(--glass-border);
-            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5);
-            /* This filter turns the standard map into a dark synthwave map! */
+            border: 2px solid var(--neon-pink);
+            box-shadow: 0 0 20px rgba(255, 97, 166, 0.4);
             filter: invert(90%) hue-rotate(200deg) brightness(90%) contrast(110%);
         }
 
-        /* Fix popup text color inside the dark map */
+        /* Fix popup styles for the synthwave map */
         .leaflet-popup-content-wrapper {
-            background: var(--dark-bg);
-            color: var(--neon-blue);
+            background: var(--dark-bg) !important;
+            color: var(--neon-blue) !important;
             border: 1px solid var(--neon-pink);
             border-radius: 8px;
+            text-align: center;
         }
         .leaflet-popup-tip {
-            background: var(--dark-bg);
+            background: var(--dark-bg) !important;
             border: 1px solid var(--neon-pink);
+        }
+        
+        .custom-leaf-icon {
+            font-size: 28px;
+            text-align: center;
+            line-height: 28px;
+            filter: drop-shadow(0 0 8px #00f0ff) drop-shadow(0 0 15px #00f0ff);
+            animation: pulse 2s infinite alternate;
+        }
+
+        @keyframes pulse {
+            0% { filter: drop-shadow(0 0 5px #00f0ff); transform: scale(1); }
+            100% { filter: drop-shadow(0 0 15px #00f0ff) drop-shadow(0 0 25px #00f0ff); transform: scale(1.1); }
         }
 
         .container {
@@ -127,26 +148,37 @@
             padding: 0 1.5rem;
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-            gap: 2rem;
+            gap: 2.5rem;
             position: relative;
         }
 
         /* Glassmorphism Cards */
         .card {
             background-color: var(--glass-bg);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
             border: 1px solid var(--glass-border);
             border-radius: 16px;
             padding: 1.5rem;
             box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5);
             transition: transform 0.3s ease, border-color 0.3s ease;
+            display: flex;
+            flex-direction: column;
         }
 
         .card:hover {
             transform: translateY(-5px) scale(1.02);
             border-color: var(--neon-pink);
             box-shadow: 0 8px 32px 0 rgba(255, 97, 166, 0.3);
+        }
+
+        .card-img {
+            width: calc(100% + 3rem);
+            height: 180px;
+            margin: -1.5rem -1.5rem 1rem -1.5rem;
+            object-fit: cover;
+            border-radius: 16px 16px 0 0;
+            border-bottom: 2px solid var(--neon-pink);
         }
 
         .card h2 {
@@ -160,7 +192,7 @@
         }
 
         .card p {
-            margin: 0.5rem 0;
+            margin: 0.4rem 0;
             font-size: 1.05rem;
         }
 
@@ -171,9 +203,10 @@
             width: 85px;
         }
 
-        /* Distinct Link Buttons */
+        /* Link Buttons */
         .link-container {
-            margin-top: 1.5rem;
+            margin-top: auto;
+            padding-top: 1.5rem;
             display: flex;
             flex-direction: column;
             gap: 0.8rem;
@@ -190,6 +223,7 @@
             transition: all 0.2s ease;
             text-transform: uppercase;
             letter-spacing: 0.5px;
+            cursor: pointer;
         }
 
         .btn-website {
@@ -216,6 +250,18 @@
             transform: scale(1.02);
         }
 
+        .btn-map {
+            background-color: rgba(0, 240, 255, 0.1);
+            color: var(--neon-pink);
+            border: 2px solid var(--neon-pink);
+        }
+
+        .btn-map:hover {
+            background-color: var(--neon-pink);
+            color: var(--text-light);
+            box-shadow: 0 0 15px var(--neon-pink);
+        }
+
         footer {
             text-align: center;
             padding: 2rem;
@@ -239,167 +285,198 @@
     <p>2026 Plant-Based Directory</p>
 </header>
 
-<!-- Map Container -->
-<div class="map-wrapper">
+<div class="map-wrapper" id="map-section">
     <div id="map"></div>
 </div>
 
 <div class="container">
     
     <div class="card">
+        <img src="https://images.unsplash.com/photo-1473093295043-cdd812d0e601?w=600" alt="Italian Food" class="card-img">
         <h2>Don Fred</h2>
         <p><span class="label">Cuisine:</span> Italian</p>
         <p><span class="label">Location:</span> Newtown</p>
         <div class="link-container">
+            <button class="btn btn-map" onclick="focusMap(-33.897, 151.179, 'Don Fred')">📍 View on Map</button>
             <a href="https://www.donfred.com.au/" target="_blank" class="btn btn-website">🌐 Website: Don Fred</a>
             <a href="https://www.instagram.com/donfred.au/" target="_blank" class="btn btn-ig">📷 Instagram: @donfred</a>
         </div>
     </div>
 
     <div class="card">
+        <img src="https://images.unsplash.com/photo-1579871494447-9811cf80d66c?w=600" alt="Sushi" class="card-img">
         <h2>Comeco Foods</h2>
         <p><span class="label">Cuisine:</span> Vegan Sushi</p>
         <p><span class="label">Location:</span> Newtown</p>
         <div class="link-container">
+            <button class="btn btn-map" onclick="focusMap(-33.896, 151.178, 'Comeco Foods')">📍 View on Map</button>
             <a href="https://www.comecofoods.com.au/" target="_blank" class="btn btn-website">🌐 Website: Comeco Foods</a>
             <a href="https://www.instagram.com/comeco_foods/" target="_blank" class="btn btn-ig">📷 Instagram: @comecofoods</a>
         </div>
     </div>
 
     <div class="card">
+        <img src="https://images.unsplash.com/photo-1585937421612-70a008356fbe?w=600" alt="Indian Food" class="card-img">
         <h2>Flyover Fritterie</h2>
         <p><span class="label">Cuisine:</span> Indian</p>
         <p><span class="label">Location:</span> Redfern</p>
         <div class="link-container">
+            <button class="btn btn-map" onclick="focusMap(-33.892, 151.200, 'Flyover Fritterie And Chai Bar')">📍 View on Map</button>
             <a href="https://www.flyoverfritterie.com.au/" target="_blank" class="btn btn-website">🌐 Website: Flyover Fritterie</a>
             <a href="https://www.instagram.com/flyover_fritterie/?hl=en" target="_blank" class="btn btn-ig">📷 Instagram: @flyoverfritterie</a>
         </div>
     </div>
 
     <div class="card">
+        <img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?w=600" alt="Pizza" class="card-img">
         <h2>Gigi’s Pizza</h2>
         <p><span class="label">Cuisine:</span> Pizza</p>
         <p><span class="label">Location:</span> Newtown</p>
         <div class="link-container">
+            <button class="btn btn-map" onclick="focusMap(-33.895, 151.179, 'Gigi’s Pizza')">📍 View on Map</button>
             <a href="https://www.gigipizzeria.com.au/" target="_blank" class="btn btn-website">🌐 Website: Gigi’s Pizza</a>
             <a href="https://www.instagram.com/gigipizzeria/?hl=en" target="_blank" class="btn btn-ig">📷 Instagram: @gigispizza</a>
         </div>
     </div>
 
     <div class="card">
+        <img src="https://images.unsplash.com/photo-1582878826629-29b7ad1cdc43?w=600" alt="Vietnamese Food" class="card-img">
         <h2>Golden Lotus</h2>
         <p><span class="label">Cuisine:</span> Vietnamese</p>
         <p><span class="label">Location:</span> Newtown</p>
         <div class="link-container">
+            <button class="btn btn-map" onclick="focusMap(-33.898, 151.177, 'Golden Lotus Vietnamese')">📍 View on Map</button>
             <a href="https://www.goldenlotus-vegan.com/" target="_blank" class="btn btn-website">🌐 Website: Golden Lotus</a>
             <a href="https://www.instagram.com/goldenlotusvegan/?hl=en" target="_blank" class="btn btn-ig">📷 Instagram: @goldenlotusvegan</a>
         </div>
     </div>
 
     <div class="card">
+        <img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?w=600" alt="Bakery" class="card-img">
         <h2>Le Gourmand</h2>
         <p><span class="label">Cuisine:</span> Bakery</p>
         <p><span class="label">Location:</span> Newtown</p>
         <div class="link-container">
+            <button class="btn btn-map" onclick="focusMap(-33.899, 151.176, 'Le Gourmand')">📍 View on Map</button>
             <a href="https://www.legourmand.com.au/about-us" target="_blank" class="btn btn-website">🌐 Website: Le Gourmand</a>
             <a href="https://www.instagram.com/legourmandfoods" target="_blank" class="btn btn-ig">📷 Instagram: @legourmandfoods</a>
         </div>
     </div>
 
     <div class="card">
+        <img src="https://images.unsplash.com/photo-1538481199005-27156150f9a2?w=600" alt="Pub Food" class="card-img">
         <h2>Mama B’s</h2>
         <p><span class="label">Cuisine:</span> Pub Classics</p>
         <p><span class="label">Location:</span> Chippendale</p>
         <div class="link-container">
+            <button class="btn btn-map" onclick="focusMap(-33.885, 151.200, 'Mama B’s Vegan Bistro')">📍 View on Map</button>
             <a href="https://www.instagram.com/mamabsveganpubbistro/?hl=en" target="_blank" class="btn btn-ig">📷 Instagram: @mamabsveganpubbistro</a>
         </div>
     </div>
 
     <div class="card">
+        <img src="https://images.unsplash.com/photo-1520072959219-c595dc870360?w=600" alt="Burger" class="card-img">
         <h2>Mr Charlie’s</h2>
         <p><span class="label">Cuisine:</span> Fast Food Burgers</p>
         <p><span class="label">Location:</span> Redfern</p>
         <div class="link-container">
+            <button class="btn btn-map" onclick="focusMap(-33.893, 151.201, 'Mr Charlie’s')">📍 View on Map</button>
             <a href="https://www.timeout.com/sydney/restaurants/mr-charlies" target="_blank" class="btn btn-website">🌐 Website: Mr Charlie’s</a>
             <a href="https://www.instagram.com/explore/locations/126177830587927/mr-charlies-au/" target="_blank" class="btn btn-ig">📷 Instagram: @mrcharlies</a>
         </div>
     </div>
 
     <div class="card">
+        <img src="https://images.unsplash.com/photo-1626094309830-cb94d0cce508?w=600" alt="Croissant" class="card-img">
         <h2>Oh My Days</h2>
         <p><span class="label">Cuisine:</span> Vegan Bakery</p>
         <p><span class="label">Location:</span> Glebe</p>
         <div class="link-container">
+            <button class="btn btn-map" onclick="focusMap(-33.882, 151.183, 'Oh My Days')">📍 View on Map</button>
             <a href="https://www.ohmydays.com.au/" target="_blank" class="btn btn-website">🌐 Website: Oh My Days</a>
             <a href="https://www.instagram.com/ohmydaysglebe/?hl=en" target="_blank" class="btn btn-ig">📷 Instagram: @ohmydaysglebe</a>
         </div>
     </div>
 
     <div class="card">
+        <img src="https://images.unsplash.com/photo-1554433607-66b5efe9d304?w=600" alt="Deli Sandwich" class="card-img">
         <h2>Shift Eatery</h2>
         <p><span class="label">Cuisine:</span> Vegan Deli</p>
         <p><span class="label">Location:</span> Surry Hills</p>
         <div class="link-container">
+            <button class="btn btn-map" onclick="focusMap(-33.885, 151.210, 'Shift Eatery')">📍 View on Map</button>
             <a href="https://www.shifteatery.com.au/" target="_blank" class="btn btn-website">🌐 Website: Shift Eatery</a>
             <a href="https://www.instagram.com/shifteatery/?hl=en" target="_blank" class="btn btn-ig">📷 Instagram: @shifteatery</a>
         </div>
     </div>
 
     <div class="card">
+        <img src="https://images.unsplash.com/photo-1559314809-0d155014e29e?w=600" alt="Thai Food" class="card-img">
         <h2>The Little Turtle</h2>
         <p><span class="label">Cuisine:</span> Thai</p>
         <p><span class="label">Location:</span> Enmore</p>
         <div class="link-container">
+            <button class="btn btn-map" onclick="focusMap(-33.900, 151.173, 'The Little Turtle Restaurant')">📍 View on Map</button>
             <a href="https://littleturtlerestaurant.com/" target="_blank" class="btn btn-website">🌐 Website: The Little Turtle</a>
             <a href="https://www.instagram.com/littleturtlerestaurant/?hl=en" target="_blank" class="btn btn-ig">📷 Instagram: @littleturtlerestaurant</a>
         </div>
     </div>
 
     <div class="card">
+        <img src="https://images.unsplash.com/photo-1557872943-16a5ac26437e?w=600" alt="Ramen" class="card-img">
         <h2>Towzen</h2>
         <p><span class="label">Cuisine:</span> Japanese (Ramen)</p>
         <p><span class="label">Location:</span> City</p>
         <div class="link-container">
+            <button class="btn btn-map" onclick="focusMap(-33.870, 151.208, 'Towzen')">📍 View on Map</button>
             <a href="https://towzenramen.com/" target="_blank" class="btn btn-website">🌐 Website: Towzen</a>
             <a href="https://www.instagram.com/towzen.au/" target="_blank" class="btn btn-ig">📷 Instagram: @towzensydney</a>
         </div>
     </div>
 
     <div class="card">
+        <img src="https://images.unsplash.com/photo-1565299585323-38d6b0865b47?w=600" alt="Mexican Food" class="card-img">
         <h2>Vandal</h2>
         <p><span class="label">Cuisine:</span> Mexican</p>
         <p><span class="label">Location:</span> Newtown</p>
         <div class="link-container">
+            <button class="btn btn-map" onclick="focusMap(-33.896, 151.178, 'Vandal')">📍 View on Map</button>
             <a href="https://www.vandalsydney.com.au/" target="_blank" class="btn btn-website">🌐 Website: Vandal</a>
             <a href="https://www.instagram.com/vandal_sydney/?hl=en" target="_blank" class="btn btn-ig">📷 Instagram: @vandalsydney</a>
         </div>
     </div>
 
     <div class="card">
+        <img src="https://images.unsplash.com/photo-1544025162-8350b06b744a?w=600" alt="Modern Dining" class="card-img">
         <h2>Yullis</h2>
         <p><span class="label">Cuisine:</span> Modern Australian</p>
         <p><span class="label">Location:</span> Surry Hills</p>
         <div class="link-container">
+            <button class="btn btn-map" onclick="focusMap(-33.886, 151.214, 'Yullis')">📍 View on Map</button>
             <a href="https://yullis.com.au/" target="_blank" class="btn btn-website">🌐 Website: Yullis</a>
             <a href="https://www.instagram.com/yullissurryhills/?hl=en" target="_blank" class="btn btn-ig">📷 Instagram: @yullis_surryhills</a>
         </div>
     </div>
 
     <div class="card">
+        <img src="https://images.unsplash.com/photo-1614316311776-4d008eb45d7f?w=600" alt="Brewery" class="card-img">
         <h2>Yullis Brews</h2>
         <p><span class="label">Cuisine:</span> Brewery</p>
         <p><span class="label">Location:</span> Alexandria</p>
         <div class="link-container">
+            <button class="btn btn-map" onclick="focusMap(-33.910, 151.195, 'Yullis Brews')">📍 View on Map</button>
             <a href="https://www.yullisbrews.com.au/" target="_blank" class="btn btn-website">🌐 Website: Yullis Brews</a>
             <a href="https://www.instagram.com/yullisbrews/?hl=en" target="_blank" class="btn btn-ig">📷 Instagram: @yullisbrews</a>
         </div>
     </div>
 
     <div class="card">
+        <img src="https://images.unsplash.com/photo-1604908176997-125f25cc6f3d?w=600" alt="Fine Dining" class="card-img">
         <h2>Yellow</h2>
         <p><span class="label">Cuisine:</span> Modern Australian</p>
         <p><span class="label">Location:</span> Potts Point</p>
         <div class="link-container">
+            <button class="btn btn-map" onclick="focusMap(-33.870, 151.225, 'Yellow')">📍 View on Map</button>
             <a href="https://www.bentleyrestaurantgroup.com.au/yellow" target="_blank" class="btn btn-website">🌐 Website: Yellow</a>
             <a href="https://www.instagram.com/yellowsydney/?hl=en" target="_blank" class="btn btn-ig">📷 Instagram: @yellowsydney</a>
         </div>
@@ -414,16 +491,22 @@
 <!-- Leaflet Map JS script -->
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script>
-    // Initialize the map and set it to focus on the Sydney area (Newtown/Surry Hills)
     var map = L.map('map').setView([-33.8900, 151.1900], 13);
 
-    // Load the free OpenStreetMap tiles
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         maxZoom: 19,
         attribution: '&copy; OpenStreetMap contributors'
     }).addTo(map);
 
-    // List of restaurants and their approximate GPS coordinates
+    // Create the custom glowing neon leaf icon
+    var neonLeafIcon = L.divIcon({
+        className: 'custom-div-icon',
+        html: "<div class='custom-leaf-icon'>🌱</div>",
+        iconSize: [30, 42],
+        iconAnchor: [15, 21],
+        popupAnchor: [0, -20]
+    });
+
     var restaurants = [
         ["Don Fred", -33.897, 151.179],
         ["Comeco Foods", -33.896, 151.178],
@@ -443,12 +526,29 @@
         ["Yellow", -33.870, 151.225]
     ];
 
-    // Loop through the data and place a marker on the map for each one
+    // Store marker references by name to open popups dynamically
+    var markers = {};
+
     restaurants.forEach(function(place) {
-        L.marker([place[1], place[2]])
-         .addTo(map)
-         .bindPopup("<b>" + place[0] + "</b>");
+        var m = L.marker([place[1], place[2]], {icon: neonLeafIcon})
+                 .addTo(map)
+                 .bindPopup("<b>" + place[0] + "</b>");
+        markers[place[0]] = m;
     });
+
+    // Function to pan to marker and open popup when card button is clicked
+    function focusMap(lat, lng, name) {
+        // Scroll map into view
+        document.getElementById('map-section').scrollIntoView({ behavior: 'smooth', block: 'center' });
+        
+        // Fly to location and open popup
+        map.flyTo([lat, lng], 16, { duration: 1.5 });
+        setTimeout(() => {
+            if (markers[name]) {
+                markers[name].openPopup();
+            }
+        }, 1500); // Waits for flyTo animation to complete
+    }
 </script>
 
 </body>
